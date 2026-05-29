@@ -34,16 +34,19 @@ function playRound(humanChoice, computerChoice){
         return `you lose ${computerChoice} loses to ${humanChoice}`;    
     }
 }
-let roundResult= playRound(getHumanChoice(), getComputerChoice());
-console.log(roundResult);
-function playGame(){
-    let humanScore=0;
-    let computerScore=0;
-    console.log(playRound(getHumanChoice(), getComputerChoice()));
-    console.log(playRound(getHumanChoice(), getComputerChoice()));
-    console.log(playRound(getHumanChoice(), getComputerChoice()));
-    console.log(playRound(getHumanChoice(), getComputerChoice()));
-    console.log(playRound(getHumanChoice(), getComputerChoice()));
 
-}
-playGame();
+const btn=document.querySelector("#btn");
+const container=document.querySelector("#container");
+btn.addEventListener("click",function(){
+    const humanChoice=getHumanChoice();
+    const computerChoice=getComputerChoice();
+    const result=playRound(humanChoice,computerChoice);
+    container.textContent= `${result}|score-You:${humanScore}|computer:${computerScore}`;
+    if(humanScore===5){
+        container.textContent="you win the game! final score-you: 5|computer:"+computerScore;
+    }
+    else if(computerScore===5){
+        container.textContent="computer wins the game!final score -Computer:5| you: "+humanScore;
+    }
+    console.log(result);
+});
